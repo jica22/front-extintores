@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+}
+
+@keyframes fade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-down {
+  animation: fade-down 0.3s ease-out forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}

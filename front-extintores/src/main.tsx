@@ -2,11 +2,23 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './components/NavBar.tsx'
+import Login from './pages/Login.tsx'
+import Register from './pages/Register.tsx'
+import { AuthProvider } from './context/AuthProvider.tsx'
+import PrivateRoute from './components/PrivateRoute.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-    </Routes>
-  </BrowserRouter>
+  <div className='font-poppins'>
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<PrivateRoute element={<App />} />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  </div>
 )
