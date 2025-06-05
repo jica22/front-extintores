@@ -105,7 +105,7 @@ export default function Navbar() {
                     <div className="border-t-2 border-blue-300 p-4">
                         <Link onClick={(e) => {
                             setIsOpen(false);
-                        }} to="/intimos-do-allan" className="absolute bottom-20 text-white hover:text-blue-600 transition-all duration-200">Íntimos do Allan</Link>
+                        }} to="/demonstracao-react" className="absolute bottom-20 text-white hover:text-blue-600 transition-all duration-200">Demo react</Link>
                     </div>
                 </div>
             )}

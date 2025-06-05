@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<PrivateRoute element={<App />} />} />
           <Route path="/extintores" element={<PrivateRoute element={<App />} />} />
           <Route path="/grupo" element={<PrivateRoute element={<Group />} />} />
-          <Route path="/allan-gostoso" element={<PrivateRoute element={<App />} />} />
+          <Route path="/demonstracao-react" element={<PrivateRoute element={<App />} />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
