@@ -5,13 +5,14 @@ import santastico from "./assets/santastico.jpg";
 import ph from "./assets/ph.jpg";
 import joaoroberto from "./assets/joaoroberto.jpg";
 import grupo from "./assets/grupo.png";
+
 export default function Group() {
 
   return (
     <div className="flex flex-col items-center justify-center bg-white p-20">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">Trabalho de Back-End</h1>
       <p className="text-lg text-gray-600 mb-8 max-w-xl text-center">
-        Este projeto foi desenvolvido por alunos do curso de Engenharia de Software da Universidade do Extremo Sul Catarinense (UNESC) como parte da disciplina de Desenvolvimento de Back-End. O projeto foi orientado pelo professor Allan Stieg.
+        Este projeto foi desenvolvido por alunos do curso de Sistemas da Informação do Centro Universitário do Espírito Santo - Câmpus Colatina (UNESC), como parte da disciplina de Desenvolvimento Web Back-End. O projeto foi orientado pelo professor Allan Stieg.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 mb-8">
         <IntegranteCard
