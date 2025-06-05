@@ -8,6 +8,7 @@ import Register from './pages/Register.tsx'
 import { AuthProvider } from './context/AuthProvider.tsx'
 import PrivateRoute from './components/PrivateRoute.tsx'
 import Group from './pages/Group.tsx'
+import DemoReact from './pages/DemoReact.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <div className='font-poppins'>
@@ -20,7 +21,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<PrivateRoute element={<App />} />} />
           <Route path="/extintores" element={<PrivateRoute element={<App />} />} />
           <Route path="/grupo" element={<PrivateRoute element={<Group />} />} />
-          <Route path="/demonstracao-react" element={<PrivateRoute element={<App />} />} />
+          <Route path="/demonstracao-react" element={<PrivateRoute element={<DemoReact />} />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

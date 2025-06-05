@@ -9,6 +9,7 @@ interface ExtintorProps {
     localizacao: string;
     tipo: string;
     imagemUrl?: string;
+    fetchExtintores?: () => void;
 }
 
 const andarOptions = [
@@ -29,7 +30,7 @@ const tipoExtintorOptions = [
     { value: "Quimico", label: "Pó Químico" },
 ]
 
-export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }: ExtintorProps) {
+export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl, fetchExtintores }: ExtintorProps) {
     const [showOptions, setShowOptions] = useState(false);
     const [andarAtual, setAndarAtual] = useState(andar);
     const [localizacaoAtual, setLocalizacaoAtual] = useState(localizacao);
@@ -118,9 +119,10 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
 
                                 const result = await response.json();
                                 console.log(result);
-                                alert(result.message);
                                 setShowOptions(false);
-                                navigate(0);
+                                fetchExtintores?.();
+                                setMessage(result.message);
+                                setSuccess(true);
                             } catch (err) {
                                 console.error("Erro ao atualizar:", err);
                                 alert("Erro ao atualizar o extintor.");
@@ -207,7 +209,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                                             });
                                             const data = await res.json();
                                             setShowOptions(false);
-                                            navigate(0);
+                                            fetchExtintores?.();
                                         } catch (error) {
                                             console.error("Erro ao excluir:", error);
                                             alert("Erro ao excluir o extintor.");

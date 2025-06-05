@@ -195,6 +195,7 @@ export default function App() {
             localizacao={extintor.localizacao}
             tipo={extintor.tipo}
             imagemUrl={`http://localhost/extintores/${extintor.imagem}`}
+            fetchExtintores={fetchExtintores}
           />
         ))}
       </div>

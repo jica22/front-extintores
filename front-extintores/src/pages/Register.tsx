@@ -50,7 +50,6 @@ export default function Register() {
                 if (data.error) {
                   setMensagem(data.error);
                 } else {
-                  setMensagem(`Bem-vindo, ${data.usuario}`);
                   await atualizarSessao();
                   navigate("/", { replace: true });
                 }
