@@ -7,7 +7,7 @@ import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import { AuthProvider } from './context/AuthProvider.tsx'
 import PrivateRoute from './components/PrivateRoute.tsx'
-import Group from './Group.tsx'
+import Group from './context/Group.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <div className='font-poppins'>

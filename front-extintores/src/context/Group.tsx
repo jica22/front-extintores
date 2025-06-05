@@ -1,10 +1,10 @@
-import IntegranteCard from "./components/IntegranteCard";
-import simonassi from "./assets/simonassi.jpg";
-import dl from "./assets/dl.jpg";
-import santastico from "./assets/santastico.jpg";
-import ph from "./assets/ph.jpg";
-import joaoroberto from "./assets/joaoroberto.jpg";
-import grupo from "./assets/grupo.png";
+import IntegranteCard from "../components/IntegranteCard";
+import simonassi from "../assets/simonassi.jpg";
+import dl from "../assets/dl.jpg";
+import santastico from "../assets/santastico.jpg";
+import ph from "../assets/ph.jpg";
+import joaoroberto from "../assets/joaoroberto.jpg";
+import grupo from "../assets/grupo.png";
 
 export default function Group() {
 
