@@ -35,7 +35,7 @@ export default function Group() {
             nome="João Roberto"
             funcao="Apresentação e Fotógrafo"
             fotoUrl={joaoroberto}
-            funcaoAlternativa="Conseguidor de provas do ..."
+            funcaoAlternativa="Conseguidor de provas"
           />
         <IntegranteCard
           nome="Rafael Pedro"

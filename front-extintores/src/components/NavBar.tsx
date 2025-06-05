@@ -95,11 +95,17 @@ export default function Navbar() {
                 
                 >
                     <nav className="flex flex-col p-4 space-y-2">
-                        <Link to="/" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Extintores</Link>
-                        <Link to="/grupo" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Grupo</Link>
+                        <Link onClick={(e) => {
+                            setIsOpen(false);
+                        }} to="/" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Extintores</Link>
+                        <Link onClick={(e) => {
+                            setIsOpen(false);
+                        }} to="/grupo" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Grupo</Link>
                     </nav>
                     <div className="border-t-2 border-blue-300 p-4">
-                        <Link to="/intimos-do-allan" className="absolute bottom-20 text-white hover:text-blue-600 transition-all duration-200">Íntimos do Allan</Link>
+                        <Link onClick={(e) => {
+                            setIsOpen(false);
+                        }} to="/intimos-do-allan" className="absolute bottom-20 text-white hover:text-blue-600 transition-all duration-200">Íntimos do Allan</Link>
                     </div>
                 </div>
             )}

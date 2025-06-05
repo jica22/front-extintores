@@ -38,14 +38,16 @@ const IntegranteCard: React.FC<IntegranteCardProps> = ({ nome, funcao, fotoUrl, 
             </div>
 
             <h3 className="mt-2 mb-1 text-lg font-semibold">{nome}</h3>
-            <p className={`absolute text-center text-gray-600 m-0 transition-opacity duration-500 ${
-                        hovered && funcaoAlternativa? 'opacity-0' : 'opacity-100'
-                    }`}>{funcao}</p>
-            {hovered && funcaoAlternativa && (
-                <p className={`absolute text-center text-gray-600 m-0 transition-opacity duration-500 ${
-                            hovered ? 'opacity-100' : 'opacity-0'
-                        }`}>{funcaoAlternativa}</p>
-            )}
+            <div className="relative">
+                <p className={`absolute text-center w-full text-gray-600 m-0 transition-opacity duration-500 ${
+                            hovered && funcaoAlternativa? 'opacity-0' : 'opacity-100'
+                        }`}>{funcao}</p>
+                {hovered && funcaoAlternativa && (
+                    <p className={`absolute w-full text-center text-gray-600 m-0 transition-opacity duration-500 ${
+                                hovered ? 'opacity-100' : 'opacity-0'
+                            }`}>{funcaoAlternativa}</p>
+                )}
+            </div>
         </div>
     )};
 
