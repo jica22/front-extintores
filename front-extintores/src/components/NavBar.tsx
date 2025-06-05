@@ -90,13 +90,17 @@ export default function Navbar() {
                  fixed border-r-2 border-t-2 border-blue-300 h-full w-64 bg-white shadow-lg z-50
                   transform ${isOpen ? "translate-x-0" : "-translate-x-full"}
                   transition-transform duration-300 ease-in-out animate-fade-in
+                  flex flex-col justify-between
                 `}
+                
                 >
                     <nav className="flex flex-col p-4 space-y-2">
-                        <Link to="/" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Início</Link>
-                        <Link to="/sobre" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Sobre</Link>
-                        <Link to="/contato" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Contato</Link>
+                        <Link to="/" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Extintores</Link>
+                        <Link to="/grupo" className="text-gray-800 hover:text-blue-600 transition-all duration-200">Grupo</Link>
                     </nav>
+                    <div className="border-t-2 border-blue-300 p-4">
+                        <Link to="/intimos-do-allan" className="absolute bottom-20 text-white hover:text-blue-600 transition-all duration-200">Íntimos do Allan</Link>
+                    </div>
                 </div>
             )}
         </nav>

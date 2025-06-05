@@ -3,6 +3,7 @@ import ExtintorCard from "./components/ExtintorCard";
 import MultipleSelect from "./components/MultipleSelect";
 import InputField from "./components/InputField";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthProvider";
 
 const andarOptions = [
   { value: "1º Andar", label: "1º Andar" },
@@ -14,15 +15,12 @@ const corredorOptions = [
   { value: "Corredor A", label: "Corredor A" },
   { value: "Corredor B", label: "Corredor B" },
   { value: "Corredor C", label: "Corredor C" },
-  { value: "Corredor D", label: "Corredor D" },
 ];
 
 const tipoExtintorOptions = [
   { value: "CO2", label: "CO2" },
   { value: "Agua", label: "Água" },
   { value: "Quimico", label: "Pó Químico" },
-  { value: "Espuma", label: "Espuma" },
-  { value: "Halon", label: "Halon" },
 ]
 
 // Tipo auxiliar para tipar os dados
@@ -39,7 +37,9 @@ export default function App() {
   const [corredores, setCorredores] = useState<string[]>([]);
   const [tipoExtintores, setTipoExtintores] = useState<string[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [sucess, setSuccess] = useState(false);
+  const {admin} = useAuth();
 
   const [extintores, setExtintores] = useState<Extintor[]>([]);
 
@@ -55,34 +55,21 @@ export default function App() {
 
     return andarMatch && corredorMatch && tipoMatch;
   });
-  useEffect(() => {
-    async function fetchExtintores() {
-      try {
-        const res = await fetch("http://localhost/extintores/list.php", {
-          credentials: "include", // se você usa sessão
-        });
-        const data = await res.json();
-        setExtintores(data);
-        extintoresFiltrados = extintores.filter((extintor) => {
-          const andarMatch =
-            andares.length === 0 || andares.includes(extintor.andar);
 
-          const corredorMatch =
-            corredores.length === 0 || corredores.includes(extintor.localizacao);
-
-          const tipoMatch =
-            tipoExtintores.length === 0 || tipoExtintores.includes(extintor.tipo);
-
-          return andarMatch && corredorMatch && tipoMatch;
-        })
-      } catch (err) {
-        console.error("Erro ao buscar extintores:", err);
-      }
+  const fetchExtintores = async () => {
+    try {
+      const res = await fetch("http://localhost/extintores/list.php", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setExtintores(data);
+    } catch (err) {
+      console.error("Erro ao buscar extintores:", err);
     }
-
-
-    fetchExtintores();
-  }, []);
+  };
+  useEffect(() => {
+  fetchExtintores();
+}, []);
 
   return (
     <div className="flex flex-col items-center justify-center bg-white p-20">
@@ -90,11 +77,11 @@ export default function App() {
         <MultipleSelect value={andares} onChange={setAndares} options={andarOptions} label="Andares" placeholder="Selecione um ou mais andares" />
         <MultipleSelect value={corredores} onChange={setCorredores} options={corredorOptions} label="Corredores" placeholder="Selecione um ou mais corredores" />
         <MultipleSelect value={tipoExtintores} onChange={setTipoExtintores} options={tipoExtintorOptions} label="Tipos de Extintores" placeholder="Selecione um ou mais tipos" />
-        <button className="bg-blue-500 text-white m-4 pl-4 pr-4 hover:bg-blue-600 duration-200 transition cursor-pointer" onClick={() => setShowForm(!showForm)}>
+        { admin && <button className="bg-blue-500 text-white m-4 pl-4 pr-4 hover:bg-blue-600 duration-200 transition cursor-pointer" onClick={() => setShowForm(!showForm)}>
           <span className="text-white">+</span>
-        </button>
+        </button> }
       </div>
-      {showForm && (
+      {admin && showForm && (
         <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-xl relative w-full max-w-md">
             <button
@@ -109,13 +96,6 @@ export default function App() {
 
               const formElement = e.target as HTMLFormElement;
               const formData = new FormData(formElement);
-              console.log(formData.get('imagem'));
-              // const formData = {
-              //   andar: (document.getElementById('andarForm') as HTMLInputElement).value,
-              //   localizacao: (document.getElementById('corredorForm') as HTMLInputElement).value,
-              //   tipo: (document.getElementById('tipoForm') as HTMLInputElement).value,
-              //   imagemUrl: imageUrl,
-              // };
 
               try {
                 const response = await fetch('http://localhost/extintores/insert.php', {
@@ -128,11 +108,13 @@ export default function App() {
                   throw new Error('Erro ao enviar os dados para o servidor.');
                 }
 
-                alert('Extintor adicionado com sucesso!');
-                navigate(0);
+                setMessage('Extintor adicionado com sucesso!');
+                setSuccess(true);
+                await fetchExtintores();
+
               } catch (error) {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao enviar os dados.');
+                setMessage(error as string);
+                setSuccess(false);
               }
             }}>
               <div>
@@ -198,6 +180,7 @@ export default function App() {
                 >
                   Adicionar Extintor
                 </button>
+                {message && <p className={sucess ? `text-green-500` : `text-red-500`}>{message}</p>}
               </div>
             </form>
           </div>

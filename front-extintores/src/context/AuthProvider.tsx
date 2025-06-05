@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 interface AuthContextProps {
     logado: boolean;
     usuario: string | null;
+    admin: boolean
     atualizarSessao: () => Promise<void>;
     loading: boolean;
 }
@@ -10,16 +11,18 @@ interface AuthContextProps {
 const AuthContext = createContext<AuthContextProps>({
     logado: false,
     usuario: null,
+    admin: false,
     atualizarSessao: async () => { },
     loading: true,
 });
 
-export const useAuth = () => useContext(AuthContext); // ✅ ESSENCIAL
+export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [logado, setLogado] = useState(false);
     const [usuario, setUsuario] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
 
     const atualizarSessao = async () => {
         try {
@@ -30,6 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             if (data.logado) {
                 setLogado(true);
                 setUsuario(data.usuario ?? null);
+                setAdmin(data.admin ?? false);
             } else {
                 setLogado(false);
                 setUsuario(null);
@@ -47,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ logado, usuario, atualizarSessao, loading }}>
+        <AuthContext.Provider value={{ logado, usuario, atualizarSessao, loading, admin }}>
             {children}
         </AuthContext.Provider>
     );

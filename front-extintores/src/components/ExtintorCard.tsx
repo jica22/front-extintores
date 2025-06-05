@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputField from "./InputField";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 interface ExtintorProps {
     id: number;
@@ -20,15 +21,12 @@ const corredorOptions = [
     { value: "Corredor A", label: "Corredor A" },
     { value: "Corredor B", label: "Corredor B" },
     { value: "Corredor C", label: "Corredor C" },
-    { value: "Corredor D", label: "Corredor D" },
 ];
 
 const tipoExtintorOptions = [
     { value: "CO2", label: "CO2" },
     { value: "Agua", label: "Água" },
     { value: "Quimico", label: "Pó Químico" },
-    { value: "Espuma", label: "Espuma" },
-    { value: "Halon", label: "Halon" },
 ]
 
 export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }: ExtintorProps) {
@@ -36,10 +34,14 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
     const [andarAtual, setAndarAtual] = useState(andar);
     const [localizacaoAtual, setLocalizacaoAtual] = useState(localizacao);
     const [tipoAtual, setTipoAtual] = useState(tipo);
+    const [message, setMessage] = useState("");
+    const [sucess, setSuccess] = useState(false);
+    const {admin} = useAuth();
+
     const navigate = useNavigate();
     return (
         <div className="relative bg-white shadow-lg rounded-lg overflow-hidden max-w-xs w-full">
-            <button
+            {admin && <button
                 onClick={() => setShowOptions(true)}
                 className="absolute top-2 right-2 bg-gray-100 hover:bg-gray-200 p-1 rounded transition duration-200 focus:outline-none hover:cursor-pointer"
                 title="Editar"
@@ -58,7 +60,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                         d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm6.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm6.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                     />
                 </svg>
-            </button>
+            </button>}
 
             <div className="h-40 bg-gray-100 flex items-center justify-center">
                 {imagemUrl ? (
@@ -120,7 +122,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                                 setShowOptions(false);
                                 navigate(0);
                             } catch (err) {
-                                console.error("Erro ao atualizar:");
+                                console.error("Erro ao atualizar:", err);
                                 alert("Erro ao atualizar o extintor.");
                             }
                         }}>
@@ -204,7 +206,6 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                                                 credentials: "include",
                                             });
                                             const data = await res.json();
-                                            alert(data.message);
                                             setShowOptions(false);
                                             navigate(0);
                                         } catch (error) {
@@ -214,6 +215,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                                     }}>
                                     Excluir
                                 </button>
+                                { message && <p className={sucess ? `text-green-500` : `text-red-500`}>{message}</p> }
                             </div>
                         </form>
                     </div>

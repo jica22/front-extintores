@@ -7,6 +7,7 @@ import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import { AuthProvider } from './context/AuthProvider.tsx'
 import PrivateRoute from './components/PrivateRoute.tsx'
+import Group from './Group.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <div className='font-poppins'>
@@ -17,6 +18,9 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<PrivateRoute element={<App />} />} />
+          <Route path="/extintores" element={<PrivateRoute element={<App />} />} />
+          <Route path="/grupo" element={<PrivateRoute element={<Group />} />} />
+          <Route path="/allan-gostoso" element={<PrivateRoute element={<App />} />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
