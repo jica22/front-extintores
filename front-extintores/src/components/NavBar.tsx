@@ -92,7 +92,7 @@ export default function Navbar() {
                   transition-transform duration-300 ease-in-out animate-fade-in
                   flex flex-col justify-between
                 `}
-                
+
                 >
                     <nav className="flex flex-col p-4 space-y-2">
                         <Link onClick={(e) => {

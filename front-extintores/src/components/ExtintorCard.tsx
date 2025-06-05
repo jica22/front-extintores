@@ -36,7 +36,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
     const [tipoAtual, setTipoAtual] = useState(tipo);
     const [message, setMessage] = useState("");
     const [sucess, setSuccess] = useState(false);
-    const {admin} = useAuth();
+    const { admin } = useAuth();
 
     const navigate = useNavigate();
     return (
@@ -191,7 +191,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                             <div className="flex flex-row justify-between">
                                 <button
                                     type="submit"
-                                    className="bg-green-500 text-white px-4 py-2 hover:bg-green-600 duration-200 transition cursor-pointer"
+                                    className="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 duration-200 transition cursor-pointer"
                                 >
                                     Salvar
                                 </button>
@@ -215,7 +215,7 @@ export default function ExtintorCard({ id, andar, localizacao, tipo, imagemUrl }
                                     }}>
                                     Excluir
                                 </button>
-                                { message && <p className={sucess ? `text-green-500` : `text-red-500`}>{message}</p> }
+                                {message && <p className={sucess ? `text-green-500` : `text-red-500`}>{message}</p>}
                             </div>
                         </form>
                     </div>

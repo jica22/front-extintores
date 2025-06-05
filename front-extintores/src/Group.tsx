@@ -4,7 +4,6 @@ import dl from "./assets/dl.jpg";
 import santastico from "./assets/santastico.jpg";
 import ph from "./assets/ph.jpg";
 import joaoroberto from "./assets/joaoroberto.jpg";
-import dlsol from "./assets/dlsol.jpg";
 import grupo from "./assets/grupo.png";
 export default function Group() {
 
@@ -24,19 +23,17 @@ export default function Group() {
           nome="Davi Lugon"
           funcao="Apresentação e Notion"
           fotoUrl={dl}
-          imagemAlternativa={dlsol}
         />
         <IntegranteCard
           nome="João Pedro Simonassi"
           funcao="Desenvolvedor Full Stack"
           fotoUrl={simonassi}
         />
-          <IntegranteCard
-            nome="João Roberto"
-            funcao="Apresentação e Fotógrafo"
-            fotoUrl={joaoroberto}
-            funcaoAlternativa="Conseguidor de provas"
-          />
+        <IntegranteCard
+          nome="João Roberto"
+          funcao="Apresentação e Fotógrafo"
+          fotoUrl={joaoroberto}
+        />
         <IntegranteCard
           nome="Rafael Pedro"
           funcao="Fotógrafo e Documentação"
@@ -46,10 +43,10 @@ export default function Group() {
       <div>
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Foto do Grupo</h1>
         <img
-            src={grupo}
-            alt={`Foto do grupo`}
-            className={"shadow-xl shadow-blue-200 rounded-md"}
-          />
+          src={grupo}
+          alt={`Foto do grupo`}
+          className={"shadow-xl shadow-blue-200 rounded-md"}
+        />
       </div>
     </div >
   );
